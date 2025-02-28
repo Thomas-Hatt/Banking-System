@@ -6,10 +6,18 @@
 #define MAIN_H
 
 #include <iostream>
+#include "../src/store_system/Store.h"
 
-class Main {
-
-};
+/*
+void displayMainMenu();
+void createAccount();
+void updateAccount();
+void deleteAccount();
+void viewAccounts();
+void reviewTransactions();
+void loanSystem();
+*/
+void storeSystem(Store& store);
 
 
 

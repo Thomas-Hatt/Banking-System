@@ -1,11 +1,11 @@
-#include "Bank_Account.h"
+#include "../headers/Bank_Account.h"
 #include <iostream>
 #include <string>
 
 // Constructor definition
-Bank_Account::Bank_Account(int accountNumber, const std::string &userID, const std::string &userPassword,
-                           float balance, const std::string &ownerFirstName, const std::string &ownerLastName,
-                           const std::string &ownerEmail, const std::string &ownerAddress, char ownerGender,
+Bank_Account::Bank_Account(int accountNumber, std::string &userID, std::string &userPassword,
+                           float balance, std::string &ownerFirstName, std::string &ownerLastName,
+                           std::string &ownerEmail, std::string &ownerAddress, char &ownerGender,
                            int ownerPhoneNumber)
                            :
                            accountNumber(accountNumber), userID(userID), userPassword(userPassword), balance(balance),

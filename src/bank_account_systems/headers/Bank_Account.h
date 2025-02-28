@@ -40,7 +40,7 @@ class Bank_Account {
         virtual void withdraw(float amount) = 0;
         virtual void transfer(float amount, Bank_Account &targetAccount) = 0;
         virtual void displayAccountInformation() const = 0;
-        virtual void authenticate(std::string &inputUserID, std::tring &inputPassword) = 0;
+        virtual void authenticate(std::string &inputUserID, std::string &inputPassword) = 0;
         virtual void updateAccountInformation() = 0;
 
         // Common functionality for the accounts

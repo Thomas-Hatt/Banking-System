@@ -14,6 +14,9 @@ class Product {
       // Constructor
       Product(const std::string &productName, double price, int quantity);
 
+      // Default constructor
+      Product();
+
       // Getters
       std::string getProductName() const;
       double getPrice() const;

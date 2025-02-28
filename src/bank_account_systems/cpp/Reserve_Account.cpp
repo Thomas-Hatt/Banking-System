@@ -2,17 +2,19 @@
 // Created by conta on 2/26/2025.
 //
 
-#include "Reserve_Account.h"
+#include "../headers/Reserve_Account.h"
 #include <iostream>
 
 // Constructor Definition
 // The balance to earn interest is a fixed $1.00 minimum, with an Interest Rate / APY of 0.01%.
-Reserve_Account::Reserve_Account(int accountNumber, const std::string &userID, const std::string &userPassword,
-                      float balance, const std::string &ownerFirstName, const std::string &ownerLastName,
-                      const std::string &ownerEmail, int ownerPhoneNumber, char ownerGender,
-                      const std::string &ownerAddress, float interestRate)
-                      : Bank_Account(accountNumber, userID, userPassword, balance, ownerFirstName,
-                      ownerLastName, ownerEmail, ownerPhoneNumber, ownerGender, ownerAddress), interestRate(0.01f)
+Reserve_Account::Reserve_Account(int accountNumber, std::string &userID, std::string &userPassword,
+                                 float balance, std::string &ownerFirstName, std::string &ownerLastName,
+                                 std::string &ownerEmail, int ownerPhoneNumber, char ownerGender,
+                                 std::string &ownerAddress, float interestRate)
+    : Bank_Account(accountNumber, userID, userPassword, balance, ownerFirstName, ownerLastName,
+                   ownerEmail, ownerAddress, ownerGender, ownerPhoneNumber),
+
+      interestRate(interestRate)
 {}
 
 // Getter for the interest rate (dynamic based on balance)
@@ -94,9 +96,13 @@ void Reserve_Account::deposit(float amount) {
  }
 
  // Authenticate user
- bool Reserve_Account::authenticate(std::string &inputUserID, std::std::string &inputPassword) const {
-   return (inputUserID == userID && inputPassword == userPassword);
- }
+void Reserve_Account::authenticate(std::string &inputUserID, std::string &inputPassword) {
+    if (inputUserID == userID && inputPassword == userPassword) {
+        std::cout << "Authentication successful." << std::endl;
+    } else {
+        std::cout << "Authentication failed." << std::endl;
+    }
+}
 
  // Update Account Information (needs to be implemented)
  void Reserve_Account::updateAccountInformation() {
