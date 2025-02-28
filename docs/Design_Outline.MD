@@ -9,7 +9,7 @@ The purpose of this document is to define the general outline of how this progra
 The abstract version of these accounts, referred to as "Abstract Bank Account", will include:
 
 - Account type
-- Owner's personally identifiable information (name, age, sex, etc.)
+- Owner's personally identifiable information (name, age, gender, etc.)
 - Account number
 - Account balance
 - Interest rate

@@ -56,6 +56,8 @@ class Bank_Account {
         std::string getOwnerAddress() const;
         char getOwnerGender() const;
         int getOwnerPhoneNumber() const;
+
+        // Operator overloading for deposit, withdraw, and transfer
 };
 
 #endif // BANK_ACCOUNT_H
