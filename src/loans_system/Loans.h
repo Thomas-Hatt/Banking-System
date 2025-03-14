@@ -8,9 +8,6 @@
 #include <iostream>
 
 class Loans {
-
 };
-
-
 
 #endif //LOANS_H

@@ -19,6 +19,4 @@ void loanSystem();
 */
 void storeSystem(Store& store);
 
-
-
 #endif //MAIN_H

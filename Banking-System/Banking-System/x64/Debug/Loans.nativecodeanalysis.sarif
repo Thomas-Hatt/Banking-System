@@ -1,0 +1,43 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.41.34123.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/clutc/desktop/x/college/c++/advanced c++/finalproj/banking-system/src/loans_system/loans.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "86b99372c0524cd8915438a4e2c3d3d5cef88d67090ee874d765cd47dbd8e859"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/clutc/desktop/x/college/c++/advanced c++/finalproj/banking-system/src/loans_system/loans.h"
+          },
+          "hashes": {
+            "sha-256": "eb1ca655eacfd44005a8a0f77f154780af5f2d29351064f2f916cf7311ec855f"
+          }
+        }
+      ]
+    }
+  ]
+}
