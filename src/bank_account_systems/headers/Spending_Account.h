@@ -8,14 +8,17 @@
 #include <iostream>
 #include <string>
 #include "../headers/Bank_Account.h"
+#include "../headers/Overdraft_Manager.h"
 
 // Derived account: Spending Account
 class Spending_Account : public Bank_Account {
+private:
+	Overdraft_Manager overdraftManager;
 public:
 	Spending_Account(long long accountNumber, std::string& userID, std::string& userPassword,
 		float balance, std::string& ownerFirstName, std::string& ownerLastName,
 		std::string& ownerEmail, long long ownerPhoneNumber, char ownerGender,
-		std::string& ownerAddress);
+		std::string& ownerAddress, float overDraftLimit);
 
 	// Override pure virtual functions
 	void deposit(float amount) override;

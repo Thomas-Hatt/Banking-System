@@ -54,3 +54,57 @@ char Bank_Account::getOwnerGender() const {
 long long Bank_Account::getOwnerPhoneNumber() const {
 	return ownerPhoneNumber;
 }
+
+void Bank_Account::logTransaction(float amount, const std::string& srcDestination) {
+	std::string txnID = "TXN" + std::to_string(generateTransactionNumber());
+	transactions.addTransaction(txnID, amount, srcDestination);
+}
+
+void Bank_Account::displayTransactions() const {
+	transactions.displayAllTransactions();
+}
+
+// Detailed Account Information
+void Bank_Account::displayDetailedAcctInfo() const
+{
+	std::cout << "\n-- Detailed User Information --:" << std::endl;
+	std::cout << "Owner: " << ownerFirstName << " " << ownerLastName << std::endl;
+	std::cout << "Gender: " << ownerGender << std::endl;
+	std::cout << "Phone Number: " << ownerPhoneNumber << std::endl;
+	std::cout << "Email Address: " << ownerEmail << std::endl;
+	std::cout << "Owner's Physical Address: " << ownerAddress << std::endl;
+	
+	std::cout << "\nUser ID: " << userID << std::endl;
+	std::cout << "Password: " << userPassword << std::endl;
+}
+
+// -------------------------------------------------------------------
+
+// Implement Setter Methods
+void Bank_Account::setUserPassword(const std::string& password) {
+	userPassword = password;
+}
+
+void Bank_Account::setOwnerFirstName(const std::string& firstName) {
+	ownerFirstName = firstName;
+}
+
+void Bank_Account::setOwnerLastName(const std::string& lastName) {
+	ownerLastName = lastName;
+}
+
+void Bank_Account::setOwnerEmail(const std::string& email) {
+	ownerEmail = email;
+}
+
+void Bank_Account::setOwnerAddress(const std::string& address) {
+	ownerAddress = address;
+}
+
+void Bank_Account::setOwnerGender(char gender) {
+	ownerGender = gender;
+}
+
+void Bank_Account::setOwnerPhoneNumber(long long phoneNumber) {
+	ownerPhoneNumber = phoneNumber;
+}

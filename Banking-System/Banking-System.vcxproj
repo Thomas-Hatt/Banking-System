@@ -129,8 +129,10 @@
   <ItemGroup>
     <ClCompile Include="..\src\bank_account_systems\cpp\Bank_Account.cpp" />
     <ClCompile Include="..\src\bank_account_systems\cpp\Growth_Account.cpp" />
+    <ClCompile Include="..\src\bank_account_systems\cpp\Interest_Rates.cpp" />
     <ClCompile Include="..\src\bank_account_systems\cpp\Reserve_Account.cpp" />
     <ClCompile Include="..\src\bank_account_systems\cpp\Spending_Account.cpp" />
+    <ClCompile Include="..\src\bank_account_systems\cpp\Transactions.cpp" />
     <ClCompile Include="..\src\loans_system\Loans.cpp" />
     <ClCompile Include="..\src\Main.cpp" />
     <ClCompile Include="..\src\store_system\items\cpp\Product.cpp" />
@@ -139,8 +141,12 @@
   <ItemGroup>
     <ClInclude Include="..\src\bank_account_systems\headers\Bank_Account.h" />
     <ClInclude Include="..\src\bank_account_systems\headers\Growth_Account.h" />
+    <ClInclude Include="..\src\bank_account_systems\headers\Interest_Rates.h" />
+    <ClInclude Include="..\src\bank_account_systems\headers\Overdraft_Manager.h" />
     <ClInclude Include="..\src\bank_account_systems\headers\Reserve_Account.h" />
     <ClInclude Include="..\src\bank_account_systems\headers\Spending_Account.h" />
+    <ClInclude Include="..\src\bank_account_systems\headers\Transactions.h" />
+    <ClInclude Include="..\src\bank_account_systems\headers\Transactions_List.h" />
     <ClInclude Include="..\src\catch.hpp" />
     <ClInclude Include="..\src\loans_system\Loans.h" />
     <ClInclude Include="..\src\Main.h" />

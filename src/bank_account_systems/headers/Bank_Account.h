@@ -3,6 +3,8 @@
 
 #include <string>
 #include <iostream>
+#include "Transactions.h"
+#include "Transactions_List.h"
 
 // Bank account type to be mentioned in derived classes
 enum AccountType { SPENDING, RESERVE, GROWTH };
@@ -31,6 +33,10 @@ protected:
 	// Bank account type
 	AccountType type;
 
+	// Transactions
+	TransactionList transactions;
+	void logTransaction(float amount, const std::string& srcDestination);
+
 public:
 	// Constructor
 	Bank_Account() = default;
@@ -55,6 +61,9 @@ public:
 	float getBalance() const;
 	long long getAccountNumber() const;
 
+	// Method for displaying detailed user information
+	void displayDetailedAcctInfo() const;
+
 	// User-related methods
 	std::string getUserID() const;
 	std::string getUserPassword() const;
@@ -64,6 +73,21 @@ public:
 	std::string getOwnerAddress() const;
 	char getOwnerGender() const;
 	long long getOwnerPhoneNumber() const;
+
+	// Setter methods
+	void setUserPassword(const std::string& password);
+	void setOwnerFirstName(const std::string& firstName);
+	void setOwnerLastName(const std::string& lastName);
+	void setOwnerEmail(const std::string& email);
+	void setOwnerAddress(const std::string& address);
+	void setOwnerGender(char gender);
+	void setOwnerPhoneNumber(long long phoneNumber);
+
+	// Specific method for recording the transferring of money
+	void recordTransaction(float amount, const std::string& srcDestination) {
+		logTransaction(amount, srcDestination);
+	}
+	virtual void displayTransactions() const;
 
 	// Operator overloading for deposit, withdraw, and transfer
 };

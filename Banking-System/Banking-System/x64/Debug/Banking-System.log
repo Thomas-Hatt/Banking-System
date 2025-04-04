@@ -1,1 +1,83 @@
-﻿  Banking-System.vcxproj -> C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\Banking-System\x64\Debug\Banking-System.exe
+﻿  Main.cpp
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305: 'argument': truncation from '__int64' to '_Ty'
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:         with
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:         [
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:             _Ty=int
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:         ]
+  (compiling source file '../src/Main.cpp')
+  
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4309: 'argument': truncation of constant value
+  (compiling source file '../src/Main.cpp')
+  
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(60,50): warning C4305: 'argument': truncation from '__int64' to '_Ty'
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(60,50): warning C4305:         with
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(60,50): warning C4305:         [
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(60,50): warning C4305:             _Ty=int
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(60,50): warning C4305:         ]
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(60,50): warning C4309: 'argument': truncation of constant value
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(321,54): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(321,54): warning C4267:         with
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(321,54): warning C4267:         [
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(321,54): warning C4267:             _Ty=int
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(321,54): warning C4267:         ]
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(475,32): warning C4101: 'e': unreferenced local variable
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(579,33): warning C4101: 'e': unreferenced local variable
+  Bank_Account.cpp
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305: 'argument': truncation from '__int64' to '_Ty'
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:         with
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:         [
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:             _Ty=int
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:         ]
+  (compiling source file '../src/bank_account_systems/cpp/Bank_Account.cpp')
+  
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4309: 'argument': truncation of constant value
+  (compiling source file '../src/bank_account_systems/cpp/Bank_Account.cpp')
+  
+  Growth_Account.cpp
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305: 'argument': truncation from '__int64' to '_Ty'
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:         with
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:         [
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:             _Ty=int
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:         ]
+  (compiling source file '../src/bank_account_systems/cpp/Growth_Account.cpp')
+  
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4309: 'argument': truncation of constant value
+  (compiling source file '../src/bank_account_systems/cpp/Growth_Account.cpp')
+  
+  Interest_Rates.cpp
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305: 'argument': truncation from '__int64' to '_Ty'
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:         with
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:         [
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:             _Ty=int
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:         ]
+  (compiling source file '../src/bank_account_systems/cpp/Interest_Rates.cpp')
+  
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4309: 'argument': truncation of constant value
+  (compiling source file '../src/bank_account_systems/cpp/Interest_Rates.cpp')
+  
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\cpp\Interest_Rates.cpp(45,98): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Reserve_Account.cpp
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305: 'argument': truncation from '__int64' to '_Ty'
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:         with
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:         [
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:             _Ty=int
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:         ]
+  (compiling source file '../src/bank_account_systems/cpp/Reserve_Account.cpp')
+  
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4309: 'argument': truncation of constant value
+  (compiling source file '../src/bank_account_systems/cpp/Reserve_Account.cpp')
+  
+  Spending_Account.cpp
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305: 'argument': truncation from '__int64' to '_Ty'
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:         with
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:         [
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:             _Ty=int
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4305:         ]
+  (compiling source file '../src/bank_account_systems/cpp/Spending_Account.cpp')
+  
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(12,53): warning C4309: 'argument': truncation of constant value
+  (compiling source file '../src/bank_account_systems/cpp/Spending_Account.cpp')
+  
+  Transactions.cpp
+  Generating Code...
+  Banking-System.vcxproj -> C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\Banking-System\x64\Debug\Banking-System.exe

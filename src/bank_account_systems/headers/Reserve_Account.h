@@ -5,17 +5,22 @@
 #ifndef RESERVE_ACCOUNT_H
 #define RESERVE_ACCOUNT_H
 #include "../headers/Bank_Account.h"
+#include "../headers/Interest_Rates.h"
+#include "../headers/Overdraft_Manager.h"
+
 #include <iostream>
 
 // Derived account: Reserve Account
 class Reserve_Account : public Bank_Account {
 private:
-	const float interestRate;
+	InterestRate interest; // InterestRate object
+	TransactionList transactions;
+	Overdraft_Manager overdraftManager;
 public:
 	Reserve_Account(long long accountNumber, std::string& userID, std::string& userPassword,
 		float balance, std::string& ownerFirstName, std::string& ownerLastName,
 		std::string& ownerEmail, long long ownerPhoneNumber, char ownerGender,
-		std::string& ownerAddress, float interestRate);
+		std::string& ownerAddress, float overDraftLimit);
 
 	// Getters
 	float getInterestRate() const;
@@ -28,7 +33,6 @@ public:
 	void authenticate(std::string& inputUserID, std::string& inputPassword) override;
 	void updateAccountInformation() override;
 	AccountType getAccountType() const override { return type; }
-
 };
 
 #endif //RESERVE_ACCOUNT_H
