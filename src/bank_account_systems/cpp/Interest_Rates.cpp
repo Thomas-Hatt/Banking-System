@@ -14,14 +14,23 @@
 
 // Constructor to initialize interest based on account type
 InterestRate::InterestRate(AccountType type) : accountType(type) {
+
+	// Check to see if the account is a valid type
+	if (type != SPENDING && type != RESERVE && type != GROWTH) {
+		throw std::invalid_argument("Invalid AccountType provided.");
+	}
+
 	if (type == RESERVE) {
-		baseRate = 0.01f;  // Fixed rate for Reserve accounts
+		// Fixed rate for Reserve accounts
+		baseRate = 0.01f;
 	}
 	else if (type == GROWTH) {
-		baseRate = 0.02f;  // Default to lower tier Growth rate
+		// Default to lower tier Growth rate
+		baseRate = 0.02f;
 	}
 	else {
-		baseRate = 0.0f;   // No interest for Spending accounts
+		// No interest for Spending accounts
+		baseRate = 0.0f;
 	}
 }
 
@@ -29,24 +38,29 @@ InterestRate::InterestRate(AccountType type) : accountType(type) {
 float InterestRate::getRate(float balance) const {
 	if (accountType == GROWTH) {
 		if (balance >= 2500.00f) {
-			return 0.03f; // Higher rate for balances above $2500
+			// Higher rate for balances above $2500
+			return 0.03f;
 		}
 		else if (balance >= 1.00f) {
-			return 0.02f; // Lower rate for balances between $1 and $2499.99
+			// Lower rate for balances between $1 and $2499.99
+			return 0.02f;
 		}
 	}
 	else if (accountType == RESERVE) {
 		if (balance >= 1.00f) {
-			return baseRate; // Fixed rate for Reserve
+			// Fixed rate for Reserve
+			return baseRate;
 		}
 	}
-	return 0.0f; // No interest for Spending or insufficient balance
+	// No interest for Spending or insufficient balance
+	return 0.0f;
 }
 
 // Calculate simple interest based on balance, years, and applicable rate
 float InterestRate::calculateInterest(float balance, int years) const {
 	float applicableRate = getRate(balance);
-	return (balance * (applicableRate / 100)) * years; // Simple interest: P * r * t
+	// Simple interest: P * r * t
+	return (balance * (applicableRate / 100)) * years;
 }
 
 // Compound interest: A = P(1 + r/n)^nt

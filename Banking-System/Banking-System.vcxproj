@@ -133,7 +133,6 @@
     <ClCompile Include="..\src\bank_account_systems\cpp\Reserve_Account.cpp" />
     <ClCompile Include="..\src\bank_account_systems\cpp\Spending_Account.cpp" />
     <ClCompile Include="..\src\bank_account_systems\cpp\Transactions.cpp" />
-    <ClCompile Include="..\src\loans_system\Loans.cpp" />
     <ClCompile Include="..\src\Main.cpp" />
     <ClCompile Include="..\src\store_system\items\cpp\Product.cpp" />
     <ClCompile Include="..\src\store_system\Store.cpp" />
@@ -148,7 +147,6 @@
     <ClInclude Include="..\src\bank_account_systems\headers\Transactions.h" />
     <ClInclude Include="..\src\bank_account_systems\headers\Transactions_List.h" />
     <ClInclude Include="..\src\catch.hpp" />
-    <ClInclude Include="..\src\loans_system\Loans.h" />
     <ClInclude Include="..\src\Main.h" />
     <ClInclude Include="..\src\store_system\items\headers\Product.h" />
     <ClInclude Include="..\src\store_system\Store.h" />
