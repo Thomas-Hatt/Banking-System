@@ -4,12 +4,6 @@
   "Documents": [
     {
       "AbsoluteMoniker": "D:0:0:{D70B64BC-674D-4508-BC86-9CABAFCE8157}|Banking-System.vcxproj|C:\\Users\\clutc\\Desktop\\x\\College\\C\u002B\u002B\\Advanced C\u002B\u002B\\FinalProj\\Banking-System\\src\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D70B64BC-674D-4508-BC86-9CABAFCE8157}|Banking-System.vcxproj|C:\\Users\\clutc\\Desktop\\x\\College\\C\u002B\u002B\\Advanced C\u002B\u002B\\FinalProj\\Banking-System\\src\\store_system\\Store.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D70B64BC-674D-4508-BC86-9CABAFCE8157}|Banking-System.vcxproj|C:\\Users\\clutc\\Desktop\\x\\College\\C\u002B\u002B\\Advanced C\u002B\u002B\\FinalProj\\Banking-System\\src\\store_system\\Store.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -29,7 +23,7 @@
               "RelativeDocumentMoniker": "..\\src\\Main.cpp",
               "ToolTip": "C:\\Users\\clutc\\Desktop\\x\\College\\C\u002B\u002B\\Advanced C\u002B\u002B\\FinalProj\\Banking-System\\src\\Main.cpp",
               "RelativeToolTip": "..\\src\\Main.cpp",
-              "ViewState": "AgIAAOMFAAAAAAAAAAAkwB0GAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAN4DAAAAAAAAAAAcwAUEAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-12T17:23:07.629Z",
               "IsPinned": true,
@@ -42,32 +36,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Store.cpp",
-              "DocumentMoniker": "C:\\Users\\clutc\\Desktop\\x\\College\\C\u002B\u002B\\Advanced C\u002B\u002B\\FinalProj\\Banking-System\\src\\store_system\\Store.cpp",
-              "RelativeDocumentMoniker": "..\\src\\store_system\\Store.cpp",
-              "ToolTip": "C:\\Users\\clutc\\Desktop\\x\\College\\C\u002B\u002B\\Advanced C\u002B\u002B\\FinalProj\\Banking-System\\src\\store_system\\Store.cpp",
-              "RelativeToolTip": "..\\src\\store_system\\Store.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-18T04:28:19.74Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Store.h",
-              "DocumentMoniker": "C:\\Users\\clutc\\Desktop\\x\\College\\C\u002B\u002B\\Advanced C\u002B\u002B\\FinalProj\\Banking-System\\src\\store_system\\Store.h",
-              "RelativeDocumentMoniker": "..\\src\\store_system\\Store.h",
-              "ToolTip": "C:\\Users\\clutc\\Desktop\\x\\College\\C\u002B\u002B\\Advanced C\u002B\u002B\\FinalProj\\Banking-System\\src\\store_system\\Store.h",
-              "RelativeToolTip": "..\\src\\store_system\\Store.h",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAkwEMAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-04-18T04:28:17.488Z",
-              "EditorCaption": ""
             }
           ]
         },

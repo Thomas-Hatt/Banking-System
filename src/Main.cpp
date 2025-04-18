@@ -8,7 +8,6 @@
 #include <regex>
 #include <algorithm>
 #include <cctype>
-#include "Main.h"
 
 // Include the store system
 #include "../src/store_system/Store.h"
@@ -936,7 +935,7 @@ void transactionSystem(AccountList& accounts) {
 			}
 
 			// Perform the withdrawal
-			account->withdraw(withdrawalAmount);
+			account->withdraw(abs(withdrawalAmount));
 			// std::cout << "\nSuccessfully withdrew $" << withdrawalAmount << " from your account." << std::endl;
 			break;
 		}
@@ -978,8 +977,12 @@ void transactionSystem(AccountList& accounts) {
 
 			// Validate transfer amount input
 			if (std::cin.fail() || transferAmount <= 0) {
-				std::cin.clear(); // Clear the error flag
-				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore invalid input
+
+				// Clear the error flag
+				std::cin.clear();
+
+				// Ignore invalid input
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 				std::cout << "Invalid transfer amount! Must be a positive number." << std::endl;
 				continue;
 			}
