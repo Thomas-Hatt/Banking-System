@@ -41,3 +41,7 @@ It's important to note that these features are not exactly the same as how PNC B
 
 7. **Overdraft Warning**
 - Create a valid system to ensure that the user cannot withdraw or spend more money than they have in their account.
+
+Links:
+https://www.pnc.com/content/dam/pnc-com/pdf/personal/Checking/VW_Student_fees.pdf
+https://www.pnc.com/en/rates/virtual-wallet/33414/NA

@@ -81,6 +81,9 @@ void Bank_Account::displayDetailedAcctInfo() const
 // -------------------------------------------------------------------
 
 // Implement Setter Methods
+void Bank_Account::setUserID(const std::string& ownerUserID) {
+	userID = ownerUserID;
+}
 void Bank_Account::setUserPassword(const std::string& password) {
 	userPassword = password;
 }

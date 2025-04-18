@@ -75,6 +75,7 @@ public:
 	long long getOwnerPhoneNumber() const;
 
 	// Setter methods
+	void setUserID(const std::string& userID);
 	void setUserPassword(const std::string& password);
 	void setOwnerFirstName(const std::string& firstName);
 	void setOwnerLastName(const std::string& lastName);
@@ -88,8 +89,6 @@ public:
 		logTransaction(amount, srcDestination);
 	}
 	virtual void displayTransactions() const;
-
-	// Operator overloading for deposit, withdraw, and transfer
 };
 
 #endif // BANK_ACCOUNT_H

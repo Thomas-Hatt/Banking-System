@@ -146,7 +146,6 @@
     <ClInclude Include="..\src\bank_account_systems\headers\Spending_Account.h" />
     <ClInclude Include="..\src\bank_account_systems\headers\Transactions.h" />
     <ClInclude Include="..\src\bank_account_systems\headers\Transactions_List.h" />
-    <ClInclude Include="..\src\catch.hpp" />
     <ClInclude Include="..\src\Main.h" />
     <ClInclude Include="..\src\store_system\items\headers\Product.h" />
     <ClInclude Include="..\src\store_system\Store.h" />

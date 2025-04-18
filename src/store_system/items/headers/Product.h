@@ -18,7 +18,7 @@ public:
 
 	// Getters
 	std::string getProductName() const;
-	double getPrice() const;
+	float getPrice() const;
 	int getQuantity() const;
 
 	// Setters

@@ -19,7 +19,7 @@ std::string Product::getProductName() const {
 	return productName;
 }
 
-double Product::getPrice() const {
+float Product::getPrice() const {
 	return price;
 }
 

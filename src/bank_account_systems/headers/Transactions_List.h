@@ -3,6 +3,7 @@
 
 #include "Transactions.h"
 #include <random>
+#include <iostream>
 
 /*
 * The purpose of this class is to create and display transactions made from a bank account by the user
@@ -10,10 +11,10 @@
 
 // Generate a random 10-digit integer to be used in the transaction number
 // For example, TXN-5186102674
-inline int generateTransactionNumber() {
+inline long long generateTransactionNumber() {
 	std::random_device rand;
 	std::mt19937 gen(rand());
-	std::uniform_int_distribution<> dis(1000000000, 9999999999);
+	std::uniform_int_distribution<long long> dis(1000000000LL, 9999999999LL);
 	return dis(gen);
 }
 
@@ -51,20 +52,25 @@ public:
 	}
 
 	void addTransaction(const std::string& txnID, float amount, const std::string& srcDestination) {
-		// Create a new Transaction object
-		Transaction* newTransaction = new Transaction(txnID, amount, srcDestination);
+		try {
+			// Create a new Transaction object
+			Transaction* newTransaction = new Transaction(txnID, amount, srcDestination);
 
-		// Create a new TransactionNode and add it to the list
-		TransactionNode* newNode = new TransactionNode(newTransaction);
+			// Create a new TransactionNode and add it to the list
+			TransactionNode* newNode = new TransactionNode(newTransaction);
 
-		// Add to the linked list
-		if (!head) {
-			head = newNode;
+			// Add to the linked list
+			if (!head) {
+				head = newNode;
+			}
+			else {
+				TransactionNode* temp = head;
+				while (temp->next) temp = temp->next;
+				temp->next = newNode;
+			}
 		}
-		else {
-			TransactionNode* temp = head;
-			while (temp->next) temp = temp->next;
-			temp->next = newNode;
+		catch (const std::invalid_argument& e) {
+			std::cerr << "Error adding transaction: " << e.what() << std::endl;
 		}
 	}
 

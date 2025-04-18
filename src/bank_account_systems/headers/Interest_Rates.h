@@ -17,6 +17,7 @@
 
 class InterestRate {
 private:
+	// Variable to store the base interest rate
 	float baseRate;
 
 	// Store the account type to determine applicable rates

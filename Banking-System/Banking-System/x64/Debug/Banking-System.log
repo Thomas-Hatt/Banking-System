@@ -1,14 +1,4 @@
 ﻿  Main.cpp
-C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(16,50): warning C4305: 'argument': truncation from '__int64' to '_Ty'
-C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(16,50): warning C4305:         with
-C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(16,50): warning C4305:         [
-C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(16,50): warning C4305:             _Ty=int
-C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(16,50): warning C4305:         ]
-  (compiling source file '../src/Main.cpp')
-  
-C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\bank_account_systems\headers\Transactions_List.h(16,50): warning C4309: 'argument': truncation of constant value
-  (compiling source file '../src/Main.cpp')
-  
 C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(65,3): warning C4984: 'if constexpr' is a C++17 language extension
       C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(65,3):
       the template instantiation context (the oldest one first) is
@@ -21,9 +11,8 @@ C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\M
           C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(155,7):
           while compiling class template 'StringLengthValidator'
   
-C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(469,54): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
-C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(469,54): warning C4267:         with
-C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(469,54): warning C4267:         [
-C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(469,54): warning C4267:             _Ty=int
-C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\Main.cpp(469,54): warning C4267:         ]
+  Store.cpp
+  Product.cpp
+C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\src\store_system\items\cpp\Product.cpp(23,9): warning C4244: 'return': conversion from 'const double' to 'float', possible loss of data
+  Generating Code...
   Banking-System.vcxproj -> C:\Users\clutc\Desktop\x\College\C++\Advanced C++\FinalProj\Banking-System\Banking-System\x64\Debug\Banking-System.exe

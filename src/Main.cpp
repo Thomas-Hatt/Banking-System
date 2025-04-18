@@ -173,8 +173,14 @@ public:
 	}
 };
 
-// Type alias for password string length requirement
-using PasswordValidator = StringLengthValidator<6, 30>;
+// Type alias for password and physical address string length requirement
+using AddressPasswordValidator = StringLengthValidator<6, 30>;
+
+// Type alias for User ID string length requirement
+using UserIDValidator = StringLengthValidator<5, 20>;
+
+// Type alias for phone number string length requirement
+using PhoneValidator = StringLengthValidator<10, 10>;
 
 // Linked list node structure for bank account
 struct AccountNode {
@@ -323,7 +329,9 @@ public:
 
 				// Mark as deleted
 				deleted = true;
-				continue; // Skip updating 'previous'
+
+				// Skip updating 'previous'
+				continue;
 			}
 			else {
 				previous = current;
@@ -340,14 +348,17 @@ public:
 
 	// Public method to iterate through accounts and apply a function
 	// Purpose: Updates specific fields for accounts linked to a user
-	void updateAccountsForUser(const std::string& userID,
+	void updateAccountsForUser(const std::string& userIDToUpdate, const std::string& newUserID,
 		const std::string& newPassword, const std::string& newFname,
 		const std::string& newLname, const std::string& newEmail,
 		const std::string& newAddress, char newGender, long long phoneLongLong) {
 
 		AccountNode* current = head;
 		while (current) {
-			if (current->account->getUserID() == userID) {
+			if (current->account->getUserID() == userIDToUpdate) {
+				if (!newUserID.empty()) {
+					current->account->setUserID(newUserID);
+				}
 				if (!newPassword.empty()) {
 					current->account->setUserPassword(newPassword);
 				}
@@ -385,18 +396,47 @@ public:
 // Generic function to get and validate user input
 std::string getValidatedInput(const std::string& prompt, bool (*validateFunc)(const std::string&), const std::string& fieldName) {
 	std::string input;
-	do {
-		// Display prompt
-		// For example, "Enter new First Name (or leave blank to keep current)"
+	while (true) {
 		std::cout << prompt;
-
-		// Get input from user
 		std::getline(std::cin, input);
 
-		// Ensure input is not empty and the passed validation function goes through
-	} while (!input.empty() && !validateFunc(input));
+		// Check for empty input
+		if (input.empty()) {
+			std::cout << fieldName << " cannot be empty. Please try again.\n";
+			continue;
+		}
 
-	// Return the input
+		// Validate input
+		if (!validateFunc(input)) {
+			continue;
+		}
+
+		// Input is non-empty and valid
+		break;
+	}
+	return input;
+}
+
+// Generic function to get and validate user input, except this allows for blank inputs (useful for new inputs, such as new first name in updateAccount)
+std::string getValidatedEmptyInput(const std::string& prompt, bool (*validateFunc)(const std::string&), const std::string& fieldName) {
+	std::string input;
+	while (true) {
+		std::cout << prompt;
+		std::getline(std::cin, input);
+
+		// Check for empty input
+		if (input.empty()) {
+			return input;
+		}
+
+		// Validate input
+		if (!validateFunc(input)) {
+			continue;
+		}
+
+		// Input is non-empty and valid
+		break;
+	}
 	return input;
 }
 
@@ -430,12 +470,22 @@ bool validateEmail(const std::string& email) {
 	return true;
 }
 
-// Function to validate addresses (letters, numbers, spaces, and common punctuation)
+// Function to validate addresses (ensures length constraints)
 bool validateAddress(const std::string& address) {
-	if (address.length() < 5 || address.length() > 50) {
+	// Get the length of the provided address
+	size_t addressLength = address.length();
+
+	// Clamp the length between 5 and 50 characters using NumericUtils
+	size_t clampedLength = NumericUtils<size_t>::clamp(addressLength, 5, 50);
+
+	// If the original length does not match the clamped length, it's invalid
+	if (addressLength != clampedLength) {
+		// Tell the user that the address length is out of bounds
 		std::cout << "Address must be 5-50 characters long.\n";
 		return false;
 	}
+
+	// If the length is valid, return true
 	return true;
 }
 
@@ -451,8 +501,11 @@ bool validateGender(const char gender) {
 // Function to validate phone numbers (10 digits)
 bool validatePhoneNumber(const std::string& phone) {
 	std::regex pattern(R"(^(\+\d{1,3}[-.\s]?)?(\d{1,4}[-.\s]?)?\d{3,4}[-.\s]?\d{3,4}$)");
+
+	// Return phone number
 	return std::regex_match(phone, pattern);
 }
+
 
 // Function Prototypes
 void createAccount(AccountList& accounts);
@@ -466,7 +519,7 @@ void generateRandomAccount(AccountList& accounts) {
 	const std::string chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	std::random_device rd;
 	std::mt19937 gen(rd());
-	std::uniform_int_distribution<> dis(0, chars.size() - 1);
+	std::uniform_int_distribution<size_t> dis(0, chars.size() - 1);
 
 	// Generate random UserID - ensure uniqueness
 	std::string randomUserID;
@@ -567,9 +620,17 @@ void createAccount(AccountList& accounts) {
 		// Generate a random account (mostly for debugging)
 		if (userID == "100") {
 			generateRandomAccount(accounts);
-			return;  // Exit after generating random accounts
+
+			// Exit after generating random accounts
+			return;
 		}
-	} while (!validateNonEmpty(userID, "User ID") || accounts.userExists(userID));
+
+		// Validate User ID length
+		if (!UserIDValidator::validate(userID)) {
+			std::cout << UserIDValidator::getErrorMessage() << "\n";
+		}
+
+	} while (!UserIDValidator::validate(userID) || accounts.userExists(userID));
 
 	// Trim the userID
 	userID = std::regex_replace(userID, r, "");
@@ -582,10 +643,11 @@ void createAccount(AccountList& accounts) {
 		std::cout << "Enter Password: ";
 		std::getline(std::cin, password);
 
-		if (!PasswordValidator::validate(password)) {
-			std::cout << PasswordValidator::getErrorMessage() << "\n";
+		// Validate password length
+		if (!AddressPasswordValidator::validate(password)) {
+			std::cout << AddressPasswordValidator::getErrorMessage() << "\n";
 		}
-	} while (!PasswordValidator::validate(password));
+	} while (!AddressPasswordValidator::validate(password));
 
 	// Trim the password
 	password = std::regex_replace(password, r, "");
@@ -610,7 +672,15 @@ void createAccount(AccountList& accounts) {
 	gender = genderInput.empty() ? '\0' : genderInput[0];
 
 	// Validate Phone Number
-	phone = getValidatedInput("Phone Number: ", validatePhoneNumber, "Phone Number");
+	do {
+		phone = getValidatedInput("Phone Number: ", validatePhoneNumber, "Phone Number");
+
+		// Validate phone string length
+		if (!PhoneValidator::validate(phone)) {
+			std::cout << PhoneValidator::getErrorMessage() << "\n";
+		}
+	} while (!PhoneValidator::validate(phone));
+
 
 	// Convert user's Phone Number from string to long long
 	phoneLongLong = std::stoll(phone);
@@ -660,6 +730,7 @@ void updateAccount(AccountList& accounts) {
 	std::string userID;
 	std::cout << "Enter User ID to update account: ";
 	std::getline(std::cin, userID);
+	std::cout << std::endl;
 
 	// Check if the user exists
 	if (!accounts.userExists(userID)) {
@@ -668,9 +739,12 @@ void updateAccount(AccountList& accounts) {
 	}
 
 	// Get updated information
-	std::string newPassword, newFname, newLname, newEmail, newAddress, phone;
+	std::string newUserID, newPassword, newFname, newLname, newEmail, newAddress, phone;
 	char newGender;
-	long long phoneLongLong = 0;
+	long long phoneLongLong;
+
+	// Get and validate new User ID
+	newUserID = getValidatedEmptyInput("Enter new User ID (or leave blank to keep current): ", validateName, "User ID");
 
 	// Get and validate new password
 	do {
@@ -682,24 +756,29 @@ void updateAccount(AccountList& accounts) {
 	} while (!newPassword.empty() && newPassword.length() < 6);
 
 	// Get and validate new first and last name
-	newFname = getValidatedInput("Enter new First Name (or leave blank to keep current): ", validateName, "First Name");
-	newLname = getValidatedInput("Enter new Last Name (or leave blank to keep current): ", validateName, "Last Name");
+	newFname = getValidatedEmptyInput("Enter new First Name (or leave blank to keep current): ", validateName, "First Name");
+	newLname = getValidatedEmptyInput("Enter new Last Name (or leave blank to keep current): ", validateName, "Last Name");
 
 	// Get and validate new email
-	newEmail = getValidatedInput("Enter new Email (or leave blank to keep current): ", validateEmail, "Email");
+	newEmail = getValidatedEmptyInput("Enter new Email (or leave blank to keep current): ", validateEmail, "Email");
 
 	// Get and validate new address
-	newEmail = getValidatedInput("Enter new Email (or leave blank to keep current): ", validateEmail, "Email");
+	newAddress = getValidatedEmptyInput("Enter new Address (or leave blank to keep current): ", validateAddress, "Address");
 
 	// Get and validate new gender
-	std::string genderInput = getValidatedInput("Enter new Gender (M/F/O, or leave blank to keep current): ",
+	std::string genderInput = getValidatedEmptyInput("Enter new Gender (M/F/O, or leave blank to keep current): ",
 		[](const std::string& input) { return !input.empty() && validateGender(input[0]); }, "Gender");
 
 	// Extract character for gender (convert to Char)
 	newGender = genderInput.empty() ? '\0' : genderInput[0];
 
 	// Get and validate new phone number
-	phone = getValidatedInput("Enter new Phone number (or leave blank to keep current): ", validatePhoneNumber, "Phone Number");
+	phone = getValidatedEmptyInput("Enter new Phone number (or leave blank to keep current): ", validatePhoneNumber, "Phone Number");
+
+	if (phone.empty())
+	{ 
+		phone = "9999999999";
+	}
 
 	// Convert user's Phone Number from string to long long
 	phoneLongLong = std::stoll(phone);
@@ -707,13 +786,13 @@ void updateAccount(AccountList& accounts) {
 	// Update accounts
 	try
 	{
-		accounts.updateAccountsForUser(userID, newPassword, newFname, newLname, newEmail, newAddress, newGender, phoneLongLong);
+		accounts.updateAccountsForUser(userID, newUserID, newPassword, newFname, newLname, newEmail, newAddress, newGender, phoneLongLong);
 	}
 	// Catch any exceptions
 	catch (const std::exception& e)
 	{
 		std::cout << Separator();
-		std::cout << "Exception occurred while generating creating new bank accounts!" << std::endl;
+		std::cout << "Exception occurred while updating your bank account!" << std::endl;
 		std::cout << "Exception: " << e.what() << std::endl;
 		throw;
 	}
@@ -774,8 +853,13 @@ void transactionSystem(AccountList& accounts) {
 
 			// Validate amount input
 			if (std::cin.fail() || amount <= 0) {
-				std::cin.clear(); // Clear the error flag
-				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore invalid input
+				// Clear the error flag
+				std::cin.clear();
+
+				// Ignore invalid input
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+				// Output error message
 				std::cout << "Invalid amount! Must be a positive number.\n";
 				continue;
 			}
@@ -819,8 +903,6 @@ void transactionSystem(AccountList& accounts) {
 			accountType = StringValidationUtils<int>::getValidatedInput(
 				"\nSelect Account Type (1-3): ", 1, 3
 			);
-
-
 
 			// Display message for the amount to withdraw
 			std::cout << "Enter amount to withdraw: $";
@@ -991,16 +1073,19 @@ void transactionSystem(AccountList& accounts) {
 				continue;
 			}
 
+			// Search for user's account
 			Bank_Account* account = accounts.findAccount(userID, type);
 			if (!account) {
 				std::cout << "Account not found!" << std::endl;
 				continue;
 			}
 
+			// Display all transactions
 			std::cout << "\nTransactions for " << userID << " ("
 				<< (type == SPENDING ? "Spending" : type == RESERVE ? "Reserve" : "Growth")
 				<< " Account):" << std::endl;
-			account->displayTransactions(); // Display all transactions
+
+			account->displayTransactions();
 			break;
 		}
 			  // Case 5: Return to the main menu
@@ -1396,11 +1481,11 @@ int main() {
 
 // 7. Implement the storeSystem function
 void storeSystem(Store& store, AccountList& accounts) {
-
 	// Grab userID
 	std::string userID;
 	std::cout << "Enter your User ID: ";
 	std::cin >> userID;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 	// Use findAccount instead of accessing head directly
 	Bank_Account* spendingAcc = accounts.findAccount(userID, SPENDING);
@@ -1409,6 +1494,9 @@ void storeSystem(Store& store, AccountList& accounts) {
 		std::cout << "No accounts found!" << std::endl;
 		return;
 	}
+
+	// Set the current account in the store
+	store.setCurrentAccount(spendingAcc);
 
 	int choice;
 	do {
@@ -1422,58 +1510,54 @@ void storeSystem(Store& store, AccountList& accounts) {
 
 		// Get user input
 		std::cin >> choice;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
 
 		switch (choice) {
 		case 1:
 			// Case 1: Display Catalog
 			store.displayCatalog();
-
 			break;
 		case 2: {
 			// Case 2: Add to Cart
-
-			// Product Name Input
 			std::string productName;
 			std::cout << "Enter product name: ";
-			std::cin >> productName;
+			std::getline(std::cin, productName);
 
-			// Product Name Validation
 			using ProductNameValidator = StringLengthValidator<1, 50>;
 			if (!ProductNameValidator::validate(productName)) {
 				std::cout << ProductNameValidator::getErrorMessage() << std::endl;
 				break;
 			}
 
-			// Quantity Input
 			int quantity = StringValidationUtils<int>::getValidatedInput("Enter quantity: ", 1, 1000);
 
-			// Add the product and quantity to the user's cart
 			store.addToCart(productName, quantity);
-
 			break;
 		}
 		case 3:
 			// Case 3: Display cart
 			store.displayCart();
-
 			break;
 
 		case 4: {
 			// Case 4: Checkout
-			float accountBalance = spendingAcc->getBalance();
-			store.checkout(accountBalance);
+			try {
+				// Call store.checkout()
+				store.checkout();
+			}
 
-			// Output remaining balance of spending account
-			std::cout << "Remaining balance: $" << accountBalance << std::endl;
-
+			// Handle exceptions from checkout
+			catch (const std::runtime_error& e) {
+				std::cout << "Checkout failed: " << e.what() << std::endl;
+				std::cout << "Remaining balance: $" << spendingAcc->getBalance() << std::endl;
+			}
 			break;
 		}
 		case 5:
 			// Case 5: Return to main menu
 			std::cout << "Returning to main menu..." << std::endl;
-
 			break;
-
 		default:
 			// Invalid input, display error message
 			std::cout << "Invalid choice. Please try again." << std::endl;

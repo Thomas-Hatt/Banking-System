@@ -35,7 +35,7 @@ void Spending_Account::withdraw(float amount) {
 		balance -= amount;
 
 		// Log the transaction
-		logTransaction(-amount, "Withdrawal");
+		logTransaction(amount, "Withdrawal");
 
 		// Output Message
 		std::cout << "Withdrew $" << amount << " from Spending Account. New balance: $" << balance << std::endl;
@@ -68,7 +68,7 @@ void Spending_Account::transfer(float amount, Bank_Account& targetAccount) {
 	targetAccount.deposit(amount);
 
 	// Log successful transactions
-	logTransaction(-amount, "Transfer to Account " + std::to_string(targetAccount.getAccountNumber()));
+	logTransaction(amount, "Transfer to Account " + std::to_string(targetAccount.getAccountNumber()));
 	targetAccount.recordTransaction(amount, "Transfer from Account " + std::to_string(accountNumber));
 
 	std::cout << "Transferred $" << amount << " from Reserve Account to account " << targetAccount.getAccountNumber() << std::endl;
@@ -92,7 +92,7 @@ void Spending_Account::authenticate(std::string& inputUserID, std::string& input
 	}
 }
 
-// Update Account Information (needs to be implemented)
+// Update Account Information
 void Spending_Account::updateAccountInformation() {
 	std::cout << "Update Account Information:" << std::endl;
 }

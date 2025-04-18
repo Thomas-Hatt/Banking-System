@@ -8,20 +8,33 @@
 #include "items/headers/product.h"
 #include <string>
 #include <iostream>
+#include "../bank_account_systems/headers/Bank_Account.h"
 
 class Store {
 public:
 	// Constructor
 	Store();
 
-	// Methods
+	// Update the product details to include a new name, price, and quantity
 	void updateProductDetails(const std::string& productName, float newPrice, int newQuantity);
-	void addToCart(const std::string& productName, int quantity);
-	void checkout(float& accountBalance);
 
-	// Display methods
+	// Add the product to the user's cart
+	void addToCart(const std::string& productName, int quantity);
+
+	// Checkout function
+	void checkout();
+
+	// Display product catalog
 	void displayCatalog() const;
-	void displayCart() const;
+
+	// Display the user's cart
+	void displayCart();
+
+	// Clear the user's cart
+	void clearCart();
+
+	// Setter for current bank account
+	void setCurrentAccount(Bank_Account* account);
 
 private:
 	// Initialize catalog
@@ -41,6 +54,15 @@ private:
 
 	// Size of the cart
 	int cartSize;
+
+	// Add a pointer to the current account
+	Bank_Account* currentAccount;
+
+	// Calculate total cost
+	float calculateTotalCost() const;
+
+	// Helper function to find product in catalog by name
+	int findProductIndex(const std::string& productName) const;
 };
 
 #endif //STORE_H

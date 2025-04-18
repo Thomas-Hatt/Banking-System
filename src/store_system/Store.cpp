@@ -1,12 +1,8 @@
-//
-// Created by conta on 2/26/2025.
-//
-
 #include "Store.h"
 #include <iostream>
 
 // Constructor
-Store::Store() : catalogSize(0), cartSize(0) {
+Store::Store() : catalogSize(0), cartSize(0), currentAccount(nullptr) {
 	initializeCatalog();
 }
 
@@ -22,8 +18,21 @@ void Store::initializeCatalog() {
 	catalogSize = 5;
 }
 
+// Helper function to find product in catalog by name
+int Store::findProductIndex(const std::string& productName) const {
+	for (int i = 0; i < catalogSize; ++i) {
+		if (catalog[i].getProductName() == productName) {
+			return i;
+		}
+	}
+
+	// Not found
+	return -1;
+}
+
 // Update product details
 void Store::updateProductDetails(const std::string& productName, float newPrice, int newQuantity) {
+
 	// Create a variable to track if a product was found
 	bool found = false;
 
@@ -88,11 +97,16 @@ void Store::addToCart(const std::string& productName, int quantity) {
 				std::cout << "Cart is full!" << std::endl;
 			}
 
-			// Success message
-			std::cout << "\nSuccessfully added " << quantity << " " << catalog[i].getProductName() << " To your cart!" << std::endl;
-			std::cout << "Total " << catalog[i].getProductName() << " Remaining: " << catalog[i].getQuantity() << std::endl;
+			// Success message ("Successfully added 5 Chicken to your cart!")
+			std::cout << "\nSuccessfully added " << quantity << " " << catalog[i].getProductName() << " to your cart!" << std::endl;
 
-			// Exit after handling
+			// Display how much of the product is left ("Total Chicken remaining: 59")
+			std::cout << "Total " << catalog[i].getProductName() << " remaining: " << catalog[i].getQuantity() << std::endl;
+
+			// Display the total cost of the cart
+			std::cout << "Current Total: $" << calculateTotalCost() << std::endl;
+
+			// Return after adding the item to the cart
 			return;
 		}
 	}
@@ -102,28 +116,31 @@ void Store::addToCart(const std::string& productName, int quantity) {
 }
 
 // Checkout
-void Store::checkout(float& accountBalance) {
+void Store::checkout() {
 
 	// Initialize empty confirmation character
 	char userConfirmCheckout;
 
 	// Ensure cart size isn't 0
 	if (cartSize == 0) {
+		// Output message
 		std::cout << "Cart is empty." << std::endl;
 		return;
 	}
 
-	// Create a variable for the total cost
-	float totalCost = 0;
-
-	// Loop through the cart and get the total price of everything
-	for (int i = 0; i < cartSize; ++i) {
-		totalCost += cart[i].getPrice() * cart[i].getQuantity();
+	// Ensure a current account is set
+	if (!currentAccount) {
+		std::cout << "No account is set. Please log in." << std::endl;
+		return;
 	}
+
+	// Create a variable for the total cost
+	float totalCost = calculateTotalCost();
 
 	// Get user confirmation
 	do {
-		std::cout << "Are you sure you are ready for checkout? Your current total is $" << totalCost << ". Y/N: ";
+		std::cout << "Are you sure you are ready for checkout? Your current total is $" << totalCost << "." << std::endl;
+		std::cout << "Y/N: ";
 		std::cin >> userConfirmCheckout;
 
 		// Convert to uppercase to allow lowercase input
@@ -136,23 +153,37 @@ void Store::checkout(float& accountBalance) {
 	} while (userConfirmCheckout != 'Y' && userConfirmCheckout != 'N');
 
 	// Ensure the total cost is not greater than the amount of money the user has
-	if (accountBalance >= totalCost) {
+	if (currentAccount->getBalance() >= totalCost) {
 
-		// Subtract the money from the account
-		accountBalance -= totalCost;
-
-		// Output message
-		std::cout << "Checkout successful! Total cost: $" << totalCost << std::endl;
-
-		// Reset cartSize
-		cartSize = 0;
+		try
+		{
+			// Attempt to withdraw funds from the account
+			currentAccount->withdraw(totalCost);
+		}
+		catch (const std::exception& e)
+		{
+			// User does not have enough money in their account (requires exception to be thrown)
+			std::cout << "Checkout failed." << std::endl;
+			std::cout << "You currently have $" << currentAccount->getBalance() << " and the total is $" << totalCost << ", which is $" 
+				<< abs(currentAccount->getBalance() - totalCost) << " more than your current balance." << std::endl;
+			std::cout << "Exception: " << e.what() << std::endl;
+			throw;
+		}
 	}
 
-	// Error: Insufficient money
+	// If balance is insufficient but no exception was thrown, prevent checkout
 	else {
-		std::cout << "Checkout failed! You do not have enough money. Total cost: $" << totalCost << std::endl;
+		std::cout << "Checkout failed." << std::endl;
+		std::cout << "You currently have $" << currentAccount->getBalance() << " and the total is $" << totalCost << ", which is $"
+			<< abs(currentAccount->getBalance() - totalCost) << " more than your current balance." << std::endl;
 		return;
 	}
+
+	// Output message
+	std::cout << "\nCheckout successful! Total cost: $" << totalCost << std::endl;
+
+	// Reset cartSize
+	cartSize = 0;
 }
 
 // Display the catalog
@@ -166,11 +197,74 @@ void Store::displayCatalog() const {
 }
 
 // Display shopping cart
-void Store::displayCart() const {
+void Store::displayCart() {
 	std::cout << "----------------------------" << std::endl;
 	std::cout << "Shopping Cart:" << std::endl;
 	for (int i = 0; i < cartSize; ++i) {
 		cart[i].displayProductInfo();
 		std::cout << std::endl;
 	}
+
+	// Check to see if the cart is empty
+	if (cartSize == 0) {
+		// Output message
+		std::cout << "Cart is empty." << std::endl;
+		return;
+	}
+
+	// Initialize empty confirmation character
+	char userClearCart;
+
+	// Get user input to confirm if they would like to clear their cart
+	do {
+		std::cout << "Would you like to clear your cart?" << std::endl;
+		std::cout << "Y/N: ";
+		std::cin >> userClearCart;
+
+		// Convert to uppercase to allow lowercase input
+		userClearCart = std::toupper(userClearCart);
+
+		if (userClearCart != 'Y' && userClearCart != 'N') {
+			std::cout << "Invalid input. Please enter 'Y' for Yes or 'N' for No." << std::endl;
+		}
+
+	} while (userClearCart != 'Y' && userClearCart != 'N');
+
+	if (userClearCart == 'Y')
+	{
+		// Clear the user's cart
+		clearCart();
+	}
+	
+	return;
+}
+
+void Store::clearCart() {
+	// Return items to catalog and clear cart
+	for (int i = 0; i < cartSize; ++i) {
+		int catalogIndex = findProductIndex(cart[i].getProductName());
+		if (catalogIndex != -1) {
+			catalog[catalogIndex].setQuantity(catalog[catalogIndex].getQuantity() + cart[i].getQuantity());
+		}
+	}
+
+	// Set cart size to 0
+	cartSize = 0;
+
+	// Output message
+	std::cout << "\nCart cleared and items returned to catalog." << std::endl;
+}
+
+// Setter for current account
+void Store::setCurrentAccount(Bank_Account* account) {
+	currentAccount = account;
+}
+
+// Calculate total cost of items in cart
+float Store::calculateTotalCost() const {
+	float totalCost = 0.0f;
+	for (int i = 0; i < cartSize; ++i) {
+		totalCost += cart[i].getPrice() * cart[i].getQuantity();
+	}
+	return totalCost;
 }
